@@ -94,6 +94,20 @@ abstract class OAuth2 extends BaseOAuth
     }
 
     /**
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getReturnUrl(): string
+    {
+        $hostUrl = \Yii::$app->urlManager->getHostInfo();
+        $arr = parse_url($hostUrl);
+        unset($arr['port']);
+        $hostUrl = implode('', $arr);
+
+        return !is_null($this->redirectUri) ? $hostUrl . $this->redirectUri : parent::getReturnUrl();
+    }
+
+    /**
      * Generates the auth state value.
      * @return string auth state value.
      * @since 2.1
@@ -365,16 +379,5 @@ abstract class OAuth2 extends BaseOAuth
         $params[0] = Yii::$app->controller->getRoute();
 
         return Yii::$app->getUrlManager()->createAbsoluteUrl($params);
-    }
-
-    /**
-     * @return string
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getReturnUrl(): string
-    {
-        return !is_null($this->redirectUri)
-            ? \Yii::$app->urlManager->getHostInfo() . $this->redirectUri
-            : parent::getReturnUrl();
     }
 }
