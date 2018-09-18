@@ -84,7 +84,7 @@ abstract class BaseOAuth extends BaseClient
         if ($this->_returnUrl === null) {
             $this->_returnUrl = $this->defaultReturnUrl();
         }
-        return $this->_returnUrl;
+        return urlencode($this->_returnUrl);
     }
 
     /**
