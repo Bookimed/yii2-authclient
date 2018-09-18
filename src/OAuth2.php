@@ -369,9 +369,12 @@ abstract class OAuth2 extends BaseOAuth
 
     /**
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     public function getReturnUrl(): string
     {
-        return $this->redirectUri ?? parent::getReturnUrl();
+        return !is_null($this->redirectUri)
+            ? \Yii::$app->urlManager->getHostInfo() . $this->redirectUri
+            : parent::getReturnUrl();
     }
 }
