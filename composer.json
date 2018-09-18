@@ -1,5 +1,5 @@
 {
-    "name": "Bookimed/yii2-authclient",
+    "name": "bookimed/yii2-authclient",
     "description": "External authentication via OAuth and OpenID for the Yii framework",
     "keywords": ["yii2", "OAuth", "OpenID", "OpenID Connect", "auth", "api"],
     "type": "yii2-extension",
