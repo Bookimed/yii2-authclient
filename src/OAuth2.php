@@ -101,8 +101,7 @@ abstract class OAuth2 extends BaseOAuth
     {
         $hostUrl = \Yii::$app->urlManager->getHostInfo();
         $arr = parse_url($hostUrl);
-        unset($arr['port']);
-        $hostUrl = implode('', $arr);
+        $hostUrl = "{$arr['scheme']}://{$arr['host']}";
 
         return !is_null($this->redirectUri) ? $hostUrl . $this->redirectUri : parent::getReturnUrl();
     }
