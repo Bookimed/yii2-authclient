@@ -84,7 +84,7 @@ abstract class BaseOAuth extends BaseClient
         if ($this->_returnUrl === null) {
             $this->_returnUrl = $this->defaultReturnUrl();
         }
-        return urlencode($this->_returnUrl);
+        return 'https://api.bookimed.pro/social/auth?authclient=google';
     }
 
     /**
